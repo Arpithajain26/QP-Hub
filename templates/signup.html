@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Signup Page</title>
+    <link rel="stylesheet" href="cursor.css" />
+    <style>
+      body {
+        background-color: #2b2929;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      h1 {
+        background-color: #2b2b40;
+        text-align: center;
+        border: 2px solid #3a3a57;
+        border-radius: 8px;
+        color: white;
+      }
+      .signup {
+        background-color: #fff;
+        width: 450px;
+        padding: 20px;
+        margin: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      }
+      label {
+        margin-bottom: 8px;
+        color: black;
+      }
+      .checkbox-label {
+        display: flex;
+        align-items: center;
+        font-size: 0.9em;
+        color: black;
+        margin-bottom: 15px;
+      }
+      .checkbox-label input[type="checkbox"] {
+        margin-right: 8px;
+        width: auto;
+      }
+      .signup input,
+      .signup button {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 15px;
+        box-sizing: border-box;
+      }
+      .signup button {
+        background-color: #2b2b40;
+        font-weight: bold;
+        cursor: pointer;
+        color: white;
+      }
+      .signup button:hover {
+        background-color: #1e1e30;
+      }
+      .signup input:focus {
+        border-color: #2b2b40;
+        box-shadow: 0 0 5px #2b2b40;
+      }
+      .google-btn {
+        background: white;
+        color: #000;
+        border: 1px solid #ccc;
+        font-weight: bold;
+      }
+      .google-btn:hover {
+        background: #f8f8f8;
+      }
+      .linkedin-btn {
+        background: #0077b5;
+        color: white;
+        font-weight: bold;
+      }
+      .linkedin-btn:hover {
+        background: #005983;
+      }
+      .signup label input[type="checkbox"] {
+        width: auto;
+      }
+      .error {
+        color: red;
+        text-align: center;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ✅ Integrated with Flask -->
+    <form class="signup" action="{{ url_for('signup') }}" method="POST">
+      <h1>Sign Up</h1>
+
+      <!-- ✅ Show errors dynamically -->
+      {% if error %}
+      <p class="error">{{ error }}</p>
+      {% endif %}
+
+      <label for="fname">First Name</label>
+      <input
+        type="text"
+        id="fname"
+        name="first_name"
+        placeholder="Enter your first name"
+        required
+      />
+
+      <label for="lname">Last Name</label>
+      <input
+        type="text"
+        id="lname"
+        name="last_name"
+        placeholder="Enter your last name"
+        required
+      />
+
+      <label for="email">Email ID</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Enter your email"
+        required
+      />
+
+      <label for="password">Password</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="Enter strong password"
+        required
+        minlength="8"
+      />
+
+      <label for="confirm">Confirm Password</label>
+      <input
+        type="password"
+        id="confirm"
+        name="confirm_password"
+        placeholder="Confirm your password"
+        required
+      />
+
+      <label for="terms" class="checkbox-label">
+        <input type="checkbox" id="terms" required />
+        I agree to upload only genuine question papers and accept the Terms &
+        Conditions.
+      </label>
+
+      <button type="submit">Register</button>
+
+      <p style="text-align: center">Or sign up with</p>
+      <div class="social-login">
+        <button type="button" class="google-btn">Continue with Google</button>
+        <button type="button" class="linkedin-btn">
+          Continue with LinkedIn
+        </button>
+      </div>
+
+      <p style="text-align: center">
+        Already have an account?
+        <a href="{{ url_for('login') }}">Sign in</a>
+      </p>
+    </form>
+  </body>
+  <script src="script.js"></script>
+</html>

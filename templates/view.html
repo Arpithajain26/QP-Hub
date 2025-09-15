@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View QPs</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="cursor.css" />
+
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f9f9fb;
+        display: flex;
+      }
+
+      /* Sidebar */
+      .sidebar {
+        width: 220px;
+        background: #2d254f;
+        color: white;
+        min-height: 100vh;
+        padding: 20px;
+      }
+      .sidebar h2 {
+        margin-bottom: 30px;
+        font-size: 20px;
+        text-align: center;
+      }
+      .sidebar a {
+        display: block;
+        color: white;
+        padding: 10px;
+        text-decoration: none;
+        border-radius: 6px;
+        margin-bottom: 10px;
+      }
+      .sidebar a.active,
+      .sidebar a:hover {
+        background: #4a47a3;
+      }
+
+      /* Main content */
+      .main {
+        flex: 1;
+        padding: 20px;
+      }
+      .header {
+        background: #fff;
+        padding: 15px 20px;
+        border-radius: 10px;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      /* Search bar */
+      .search-bar {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+      .search-bar input,
+      .search-bar select {
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid #ddd;
+        flex: 1;
+      }
+      .btn-search {
+        background: #4a47a3; 
+        color: white;
+        border: none;
+        padding: 10px 16px;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+      .btn-search:hover {
+        background: #373380;
+      }
+
+      /* Table */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      th,
+      td {
+        padding: 14px;
+        text-align: left;
+        border-bottom: 1px solid #eee;
+      }
+      th {
+        background: #4a47a3;
+        color: white;
+      }
+      tr:hover {
+        background: #f2f2f2;
+      }
+      .btn-download {
+        background: #4a47a3;
+        color: white;
+        border: none;
+        padding: 8px 14px;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+      .btn-download:hover {
+        background: #373380;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <h2>College QP</h2>
+      <a href="dashboard.html">🏠 Dashboard</a>
+      <a href="upload.html">⬆️ Upload QP</a>
+      <a href="view.html" class="active">📄 View QP</a>
+      <a href="profile.html">👤 Profile</a>
+      <a href="signin.html">🚪 Logout</a>
+    </div>
+
+    <!-- Main content -->
+    <div class="main">
+      <div class="header">View Question Papers</div>
+
+      <!-- Search Bar -->
+      <div class="search-bar">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search by subject..."
+        />
+        <select id="semesterFilter">
+          <option value="all">All Semesters</option>
+          <option value="3rd">3rd</option>
+          <option value="4th">4th</option>
+          <option value="5th">5th</option>
+        </select>
+        <button class="btn-search" onclick="filterTable()">Search</button>
+      </div>
+
+      <!-- QP Table -->
+      <table id="qpTable">
+        <tr>
+          <th>Subject</th>
+          <th>Branch</th>
+          <th>Semester</th>
+          <th>Year</th>
+          <th>Action</th>
+        </tr>
+
+        <!-- 5th Sem -->
+        <tr data-sem="5th">
+          <td>BCS503 - Theory of Computation</td>
+          <td>CSE</td>
+          <td>5th</td>
+          <td>2024</td>
+          <td><button class="btn-download">Download</button></td>
+        </tr>
+        <tr data-sem="5th">
+          <td>BCS501 - Software Engineering and Project Management</td>
+          <td>CSE</td>
+          <td>5th</td>
+          <td>2024</td>
+          <td><button class="btn-download">Download</button></td>
+        </tr>
+        <tr data-sem="5th">
+          <td>BCS502 - Computer Networks</td>
+          <td>CSE</td>
+          <td>5th</td>
+          <td>2024</td>
+          <td><button class="btn-download">Download</button></td>
+        </tr>
+        <tr data-sem="5th">
+          <td>BCS515B - Artificial Intelligence</td>
+          <td>CSE</td>
+          <td>5th</td>
+          <td>2024</td>
+          <td><button class="btn-download">Download</button></td>
+        </tr>
+        <tr data-sem="5th">
+          <td>BRMK557 - Research Methodology and IPR</td>
+          <td>CSE</td>
+          <td>5th</td>
+          <td>2024</td>
+          <td><button class="btn-download">Download</button></td>
+        </tr>
+
+        <!-- 4th Sem -->
+        <tr data-sem="4th">
+          <td>BCS405A - Discrete Mathematics</td>
+          <td>CSE</td>
+          <td>4th</td>
+          <td>2023</td>
+          <td><button class="btn-download">Download</button></td>
+        </tr>
+        <tr data-sem="4th">
+          <td>BCS401 - Analysis and Design of Algorithms</td>
+          <td>CSE</td>
+          <td>4th</td>
+          <td>2023</td>
+          <td><button class="btn-download">Download</button></td>
+        </tr>
+        <tr data-sem="4th">
+          <td>BCS403 - Database Management Systems</td>
+          <td>CSE</td>
+          <td>4th</td>
+          <td>2023</td>
+          <td><button class="btn-download">Download</button></td>
+        </tr>
+        <tr data-sem="4th">
+          <td>BB0C407 - Biology for Engineers</td>
+          <td>CSE</td>
+          <td>4th</td>
+          <td>2023</td>
+          <td><button class="btn-download">Download</button></td>
+        </tr>
+        <tr data-sem="4th">
+          <td>BCS402 - Microcontroller</td>
+          <td>CSE</td>
+          <td>4th</td>
+          <td>2023</td>
+          <td><button class="btn-download">Download</button></td>
+        </tr>
+
+        <!-- 3rd Sem -->
+        <tr data-sem="3rd">
+          <td>BCS301 - Mathematics for CS</td>
+          <td>CSE</td>
+          <td>3rd</td>
+          <td>2022</td>
+          <td><button class="btn-download">Download</button></td>
+        </tr>
+        <tr data-sem="3rd">
+          <td>BCS302 - Digital Design and Computer Organization</td>
+          <td>CSE</td>
+          <td>3rd</td>
+          <td>2022</td>
+          <td><button class="btn-download">Download</button></td>
+        </tr>
+        <tr data-sem="3rd">
+          <td>BCS303 - Operating System</td>
+          <td>CSE</td>
+          <td>3rd</td>
+          <td>2022</td>
+          <td><button class="btn-download">Download</button></td>
+        </tr>
+        <tr data-sem="3rd">
+          <td>BCS304 - Data Structures and Applications</td>
+          <td>CSE</td>
+          <td>3rd</td>
+          <td>2022</td>
+          <td><button class="btn-download">Download</button></td>
+        </tr>
+        <tr data-sem="3rd">
+          <td>BCS306A - OOPS with Java</td>
+          <td>CSE</td>
+          <td>3rd</td>
+          <td>2022</td>
+          <td><button class="btn-download">Download</button></td>
+        </tr>
+      </table>
+    </div>
+
+    <script>
+      function filterTable() {
+        let input = document.getElementById("searchInput").value.toLowerCase();
+        let semester = document.getElementById("semesterFilter").value;
+        let rows = document.querySelectorAll("#qpTable tr[data-sem]");
+
+        rows.forEach((row) => {
+          let subject = row.cells[0].textContent.toLowerCase();
+          let rowSem = row.getAttribute("data-sem");
+
+          if (
+            (input === "" || subject.includes(input)) &&
+            (semester === "all" || semester === rowSem)
+          ) {
+            row.style.display = "";
+          } else {
+            row.style.display = "none";
+          }
+        });
+      }
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>

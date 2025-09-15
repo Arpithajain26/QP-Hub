@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Upload QP</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='cursor.css') }}"
+    />
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f9f9fb;
+        display: flex;
+      }
+
+      /* Sidebar */
+      .sidebar {
+        width: 220px;
+        background: #2d254f;
+        color: white;
+        min-height: 100vh;
+        padding: 20px;
+      }
+      .sidebar h2 {
+        margin-bottom: 30px;
+        font-size: 20px;
+        text-align: center;
+      }
+      .sidebar a {
+        display: block;
+        color: white;
+        padding: 10px;
+        text-decoration: none;
+        border-radius: 6px;
+        margin-bottom: 10px;
+      }
+      .sidebar a.active,
+      .sidebar a:hover {
+        background: #4a47a3;
+      }
+
+      /* Main content */
+      .main {
+        flex: 1;
+        padding: 20px;
+      }
+      .header {
+        background: #fff;
+        padding: 15px 20px;
+        border-radius: 10px;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      /* Upload form */
+      .upload-box {
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 500px;
+        margin: auto;
+      }
+      h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+      }
+      label {
+        display: block;
+        margin: 12px 0 5px;
+        font-weight: bold;
+      }
+      input,
+      select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+      }
+      input[type="file"] {
+        padding: 5px;
+      }
+      button {
+        margin-top: 20px;
+        width: 100%;
+        padding: 12px;
+        border: none;
+        background: #4a47a3;
+        color: white;
+        font-size: 16px;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #373380;
+      }
+      .flash-message {
+        background: #eafaf1;
+        color: #2d7042;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 6px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <h2>College QP</h2>
+      <a href="{{ url_for('dashboard') }}">🏠 Dashboard</a>
+      <a href="{{ url_for('upload') }}" class="active">⬆️ Upload QP</a>
+      <a href="{{ url_for('view_qps') }}">📄 View QP</a>
+      <a href="{{ url_for('profile') }}">👤 Profile</a>
+      <a href="{{ url_for('login') }}">🚪 Logout</a>
+    </div>
+
+    <!-- Main content -->
+    <div class="main">
+      <div class="header">Upload Question Paper</div>
+      <div class="upload-box">
+        <!-- Flash messages -->
+        {% with messages = get_flashed_messages() %} {% if messages %}
+        <div class="flash-message">
+          {% for msg in messages %}
+          <p>{{ msg }}</p>
+          {% endfor %}
+        </div>
+        {% endif %} {% endwith %}
+
+        <form
+          action="{{ url_for('upload') }}"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          <label>Subject</label>
+          <input
+            type="text"
+            name="subject"
+            placeholder="Enter subject name"
+            required
+          />
+
+          <label>Subject Code</label>
+          <input
+            type="text"
+            name="subject_code"
+            placeholder="Enter subject code (e.g., CS403)"
+            required
+          />
+
+          <label>Branch</label>
+          <select name="branch" required>
+            <option value="">Select Branch</option>
+            <option>CSE</option>
+            <option>ECE</option>
+            <option>ME</option>
+            <option>CE</option>
+          </select>
+
+          <label>Semester</label>
+          <select name="semester" required>
+            <option value="">Select Semester</option>
+            <option>1st</option>
+            <option>2nd</option>
+            <option>3rd</option>
+            <option>4th</option>
+            <option>5th</option>
+            <option>6th</option>
+            <option>7th</option>
+            <option>8th</option>
+          </select>
+
+          <label>Year</label>
+          <input type="number" name="year" placeholder="2024" required />
+
+          <label>Upload File</label>
+          <input type="file" name="file" accept=".pdf,.doc,.docx" required />
+
+          <button type="submit">Upload</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

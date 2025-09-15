@@ -1,0 +1,23 @@
+.trail {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: white;
+  pointer-events: none;
+  opacity: 0.7;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(0, 153, 255, 0.6),
+    0 0 60px #2b2b40;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes fade {
+  from {
+    opacity: 2;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+}

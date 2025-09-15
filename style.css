@@ -1,0 +1,135 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #f9f9fb;
+  color: #333;
+}
+
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background: #2d254f;
+  color: white;
+  padding: 20px;
+}
+
+.sidebar .logo {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.sidebar nav a {
+  display: block;
+  text-decoration: none;
+  color: white;
+  margin: 15px 0;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+.sidebar nav a:hover {
+  color: #d1b3ff;
+}
+
+/* Main */
+.main {
+  flex: 1;
+  padding: 30px;
+}
+
+.main h1 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+/* Quick Actions */
+.quick-actions {
+  display: flex;
+  gap: 20px;
+}
+
+.action-card {
+  flex: 1; /* equal width */
+  background: white;
+  border: 1px solid rgba(40, 40, 40, 0.1);
+  border-radius: 8px;
+  padding: 30px 20px; /* consistent padding */
+  text-align: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  height: 150px; /* fixed height for all cards */
+  display: flex; /* for vertical centering */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.badge-container {
+  margin-top: 280px;
+}
+
+.action-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(40, 40, 40, 0.1);
+}
+
+.action-card p {
+  margin-top: 10px;
+}
+
+/* Badge Section */
+.badge-section {
+  background: #1e1e2f;
+  color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  margin-top: 20px;
+  transition: transform 0.3s ease;
+}
+
+.badge-section:hover {
+  transform: scale(1.02);
+}
+
+.badge-section h2 {
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  margin-top: 10px;
+}
+
+.badge-box {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  background: #2b2b40;
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, background 0.3s ease;
+  cursor: pointer;
+}
+
+.badge:hover {
+  transform: translateY(-6px) scale(1.1);
+  background: #3a3a55;
+}
